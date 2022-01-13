@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+<script>
+
+let playerSelection
+let computerSelection = computerPlay()
+let playerScore = 0 
+let computerScore = 0
+
+
+function computerPlay() {
+    const min = 1 
+    const max = 3
+
+    const number = Math.floor(Math.random()*(max-min+1))+min
+    if(number==1) return "Scissors"
+    else if (number==2) return "Paper"
+    else return "Rock"
+    
+
+}
+ 
+function roundPlay(playerSelection, computerSelection) {
+    playerSelection = prompt("What do you choose?", "")
+    playerSelection= playerSelection.toLowerCase()
+    computerSelection= computerPlay().toLowerCase()
+    
+
+    if (playerSelection=="rock" && computerSelection=="paper") {
+        computerScore++
+        let result ="You lost.Paper beats rock" + '\n'
+        result += "Your score is: " + playerScore + '\n'
+        result += "Computer score is: " + computerScore
+        return result}
+        
+    else if (playerSelection=="rock" && computerSelection=="scissors") {
+        
+        playerScore++
+        let result ="You won.Rock beats scissors" + '\n'
+        result += "Your score is: " + playerScore + '\n'
+        result += "Computer score is: " + computerScore
+        return result}    
+    else if (playerSelection=="paper" && computerSelection=="rock") {
+        
+        playerScore++
+        let result ="You won.Paper beats rock" + '\n'
+        result += "Your score is: " + playerScore + '\n'
+        result += "Computer score is: " + computerScore
+        return result
+        }
+    else if (playerSelection=="paper" && computerSelection=="scissors") {
+        computerScore++   
+        let result ="You lost.Scissors beats paper" + '\n'
+        result += "Your score is: " + playerScore + '\n'
+        result += "Computer score is: " + computerScore
+        return result}
+    else if (playerSelection=="scissors" && computerSelection=="paper") {
+        playerScore++
+        let result ="You won.Scissors beats paper" + '\n'
+        result += "Your score is: " + playerScore + '\n'
+        result += "Computer score is: " + computerScore
+        return result}    
+    else if (playerSelection=="scissors" && computerSelection=="rock") {
+        computerScore++
+        let result ="You lost.Rock beats scissors" + '\n'
+        result += "Your score is: " + playerScore + '\n'
+        result += "Computer score is: " + computerScore
+        return result}
+    else console.log("We have a tie")
+
+   
+
+}
+function endGame() {
+    if(playerScore>computerScore) console.log("You won ! Congratz")
+    else if (playerScore<computerScore) console.log("You lost, try again!")
+}
+
+function game() {
+console.log(roundPlay())
+if(computerScore==5 || playerScore==5) {
+    endGame()
+}
+else game()
+
+
+
+}
+console.log(game())
+
+
+</script>
+
+    
+</body>
+</html>
